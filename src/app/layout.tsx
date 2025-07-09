@@ -1,9 +1,9 @@
-
 import "./globals.css";
+
 import type { Metadata } from "next";
-import { DarkModeProvider, useDarkMode } from "@/context/darkModeContext";
 
-
+import Sidebar from "../components/sidebar";
+import Player from "@/components/player";
 
 export const metadata: Metadata = {
   title: "MusicWave 🎵",
@@ -12,21 +12,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  sidebar,
 }: {
   children: React.ReactNode;
-  sidebar: React.ReactNode;
 }) {
   return (
-    
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <DarkModeProvider>
-        <body className="flex flex-row">
-            {sidebar}
-            <div></div>
-            {children}
-        </body>
-      </DarkModeProvider>
+      <body>
+        <div className="w-full max-h-[100%] flex flex-row space-x-3 space-y">
+          <Sidebar />
+          <div className="w-full max-h-full"> {children} </div>
+        </div>
+        <Player />
+      </body>
     </html>
   );
 }

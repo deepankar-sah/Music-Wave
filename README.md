@@ -1,45 +1,11 @@
 
-
 ## Music-Wave 
 
+This is a music player built in next js. currently in development phase !!
 
 
-## Folder Structure
 
-musicwave/
-├── app/
-│   ├── layout.tsx         # Root layout
-│   ├── globals.css
-│   └── page.tsx           # Home page
-│
-├── components/            # Reusable UI components
-│   ├── ThemeToggle.tsx
-│   ├── Sidebar.tsx
-│   ├── MusicCard.tsx
-│   ├── MusicGrid.tsx
-│   ├── MusicPlayer.tsx
-│   └── Topbar.tsx
-│
-├── context/               # Context API (Theme, Player, Auth etc.)
-│   ├── ThemeContext.tsx
-│   └── PlayerContext.tsx
-│
-├── hooks/                 # Custom hooks
-│   └── useLocalStorage.ts
-│
-├── public/                # Static assets
-│   └── logo.svg
-│
-├── styles/                # Extra SCSS or utilities (optional)
-│
-├── tailwind.config.js     # TailwindCSS config
-├── postcss.config.js
-├── tsconfig.json
-├── next.config.js
-├── package.json
-└── README.md
-
-
+## Run this Project
 First, run the development server:
 
 ```bash
@@ -52,5 +18,5 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000] with your browser to see the result.
 

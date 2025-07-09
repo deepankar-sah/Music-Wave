@@ -43,7 +43,7 @@ const MusicPlayer = () => {
   };
 
   // Handle End, Shuffle, Repeat Modes
-  const handleStateChange = (event: any) => {
+  const handleStateChange = (event: { data: number }) => {
     if (event.data === 0) {
       // Video ended
       const currentIndex = videoList.findIndex(

@@ -3,9 +3,9 @@
 import { Search, Settings } from "lucide-react";
 import { searchYouTube } from "@/lib/youtube";
 import { usePlayerStore } from "@/store/usePlayerStore";
-import { use, useState } from "react";
+import { useState } from "react";
 
-const header = () => {
+const Header = () => {
   const [query, setQuery] = useState("");
   const { setVideoList } = usePlayerStore();
 
@@ -50,4 +50,4 @@ const header = () => {
     </div>
   );
 };
-export default header;
+export default Header;

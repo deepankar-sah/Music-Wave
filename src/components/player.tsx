@@ -1,75 +1,91 @@
 "use client";
 
-import { useState } from "react";
-import { Pause, Play, SkipBack, SkipForward, Volume2 } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Volume2,
+  Heart,
+  Repeat,
+  Shuffle,
+} from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
-const Player = () => {
+const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(30); // % progress
 
   return (
-    <div className=" h-20 fixed bottom-0 w-full bg-[#181b21] border-t border-border z-50">
-      <div className="w-full mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-        {/* 🎵 Song Info */}
-        <div className="flex items-center gap-4 w-full md:w-1/3">
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="fixed bottom-0 left-0 right-0 bg-[#181b21] text-white px-4 py-3  shadow-md z-50"
+    >
+      <div className="flex flex-col md:flex-row justify-between items-center mx-4">
+        {/*  Song Info */}
+        <div className="flex items-center gap-4">
           <Image
-            src="" // 🔁 Use dummy image for now
-            alt="Song Thumbnail"
-            width={48}
-            height={48}
-            className="rounded"
+            src="/dummy.jpg"
+            alt="cover"
+            width={50}
+            height={50}
+            className="rounded-md"
           />
-          <div>
-            <h4 className="text-sm font-semibold text-white">Song Title</h4>
-            <p className="text-xs text-textSecondary text-white">Artist Name</p>
+          <div className="text-sm">
+            <p className="font-semibold">Song Title</p>
+            <p className="text-gray-400">Artist Name</p>
           </div>
         </div>
-
-        {/* 🎮 Controls */}
-        <div className="flex flex-col items-center w-full md:w-1/3">
-          <div className="flex items-center gap-6">
-            <button>
-              <SkipBack className="text-white" size={20} />
-            </button>
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className="p-2 rounded-full bg-primary text-white hover:scale-105 transition"
-            >
-              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-            </button>
-            <button>
-              <SkipForward className="text-white" size={20} />
-            </button>
-          </div>
-
-          {/* 📶 Progress Bar */}
-          <div className="flex items-center gap-2 mt-2 w-full">
-            <span className="text-xs text-white">1:20</span>
-            <div className="relative flex-1 h-1 bg-muted rounded overflow-hidden">
-              <div
-                className="absolute top-0 left-0 h-1 bg-primary"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <span className="text-xs text-white">3:45</span>
-          </div>
+        {/*  Playback Controls */}
+        <div className="flex items-center gap-6 mt-4 md:mt-0">
+          <SkipBack size={20} className="cursor-pointer hover:text-gray-300" />
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className="bg-white text-black rounded-full p-2"
+            onClick={() => setIsPlaying((prev) => !prev)}
+          >
+            {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+          </motion.button>
+          <SkipForward
+            size={20}
+            className="cursor-pointer hover:text-gray-300"
+          />
         </div>
 
-        {/* 🔊 Volume (Right side on desktop) */}
-        <div className="hidden md:flex items-center gap-2 w-1/3 justify-end">
-          <Volume2 size={20} />
-          <input
-            type="range"
-            min={0}
-            max={100}
-            defaultValue={50}
-            className="w-24 bg-white"
-          />
+        {/*  Action Buttons */}
+
+        <div className="space-x-8 flex flex-row">
+          <div className="flex space-x-4">
+            <Heart className="text-white hover:text-red-500 " size={18} />
+            <Repeat className="text-white" size={18} />
+            <Shuffle className="text-white" size={18} />
+          </div>
+
+          {/*  Volume */}
+          <div className="hidden md:flex items-center gap-2">
+            <Volume2 size={18} />
+            <input
+              type="range"
+              min={0}
+              max={100}
+              className="w-[100px] accent-orange-400"
+              defaultValue={70}
+            />
+          </div>
         </div>
       </div>
-    </div>
+
+      {/*  Progress Bar */}
+      <div className="w-full mt-3">
+        <div className="h-[4px] w-full bg-gray-600 rounded-full">
+          <div className="h-[4px] bg-orange-400 w-[40%] rounded-full" />
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
-export default Player;
+export default MusicPlayer;

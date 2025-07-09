@@ -1,9 +1,6 @@
 import "./globals.css";
-
 import type { Metadata } from "next";
-
-import Sidebar from "../components/sidebar";
-import Player from "@/components/player";
+import LayoutWrapper from "../components/LayoutWrapper";
 
 export const metadata: Metadata = {
   title: "MusicWave 🎵",
@@ -18,11 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body>
-        <div className="w-full max-h-[100%] flex flex-row space-x-3 space-y">
-          <Sidebar />
-          <div className="w-full max-h-full"> {children} </div>
-        </div>
-        <Player />
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

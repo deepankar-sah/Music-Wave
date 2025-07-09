@@ -3,13 +3,13 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Home, ListMusic, LogOut } from "lucide-react";
+import { Heart, Home, ListMusic, LogOut } from "lucide-react";
 
 // Navigations Links
 const navLinks = [
   { name: "Home", path: "/", icon: Home },
   { name: "Playlist", path: "/playlist", icon: ListMusic },
-  { name: "Liked Songs", path: "/liked-songs", icon: Home },
+  { name: "Liked Songs", path: "/liked-songs", icon: Heart },
 ];
 
 const Sidebar = () => {

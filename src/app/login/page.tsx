@@ -8,7 +8,7 @@ export default function LoginPage() {
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
-      router.push("/"); // Redirect to dashboard/home
+      router.push("/"); // Redirect to /home
     }
   }, [router]);
 

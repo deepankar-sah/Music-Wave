@@ -1,8 +1,19 @@
 "use client";
 
 import { Search, Settings } from "lucide-react";
+import { searchYouTube } from "@/lib/youtube";
+import { usePlayerStore } from "@/store/usePlayerStore";
+import { use, useState } from "react";
 
 const header = () => {
+  const [query, setQuery] = useState("");
+  const { setVideoList } = usePlayerStore();
+
+  const handleSearch = async () => {
+    const results = await searchYouTube(query);
+    setVideoList(results);
+  };
+
   return (
     <div className="flex items-center justify-around space-x-4">
       {/* 🔍 Search Bar */}
@@ -10,9 +21,12 @@ const header = () => {
         <input
           type="text"
           placeholder="Search for a song"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           className="bg-transparent outline-none text-white w-full placeholder-gray-400"
         />
-        <Search className="text-gray-400 mr-2" />
+        <Search onClick={handleSearch} className="text-gray-400 mr-2" />
       </div>
 
       {/*  Profile information */}
@@ -26,7 +40,7 @@ const header = () => {
           />
         </div>
         <div>
-          <p className="text-white font-semibold text-sm">Molly Hunter</p>
+          <p className="text-white font-semibold text-sm">Deepankar sah</p>
           <p className="text-green-400 text-xs ">Premium</p>
         </div>
         <div className=" w-8 h-8  flex items-center justify-center  rounded-full bg-[#181b21]">
